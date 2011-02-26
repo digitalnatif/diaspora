@@ -31,7 +31,7 @@ describe Person do
     end
     
     it 'should always return the correct public url' do
-      person = Factory.create(:person, :url => "https://example.com/a/bit/messed/up")
+      person = Factory.create(:person, :url => "https://example.com/a/bit/messed/up", :owner => @user)
       person.public_url.should == "https://example.com/public/#{person.owner.username}/"
     end
     
