@@ -95,7 +95,7 @@ class Person < ActiveRecord::Base
     self == post.person
   end
   
-  def self.url
+  def url
     uri = URI.parse(self.url)
     url = "#{uri.scheme}://#{uri.host}"
     url += ":#{uri.port}" unless ["80", "443"].include?(location.port.to_s)
@@ -104,11 +104,11 @@ class Person < ActiveRecord::Base
   end
 
   def receive_url
-    "#{self.url}receive/users/#{self.guid}/"
+    "#{url}receive/users/#{self.guid}/"
   end
 
   def public_url
-    "#{self.url}public/#{self.owner.username}"
+    "#{url}public/#{self.owner.username}"
   end
 
   def public_key_hash
