@@ -2,6 +2,7 @@
 #   licensed under the Affero General Public License version 3 or later.  See
 #   the COPYRIGHT file.
 
+require 'uri'
 require File.join(Rails.root, 'lib/hcard')
 
 class Person < ActiveRecord::Base
@@ -92,6 +93,14 @@ class Person < ActiveRecord::Base
 
   def owns?(post)
     self == post.person
+  end
+  
+  def self.url
+    uri = URI.parse(self.url)
+    url = "#{uri.scheme}://#{uri.host}"
+    url += ":#{uri.port}" unless ["80", "443"].include?(location.port.to_s)
+    url += "/"
+    url
   end
 
   def receive_url
