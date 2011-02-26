@@ -32,7 +32,7 @@ describe Person do
     
     it 'should always return the correct public url' do
       @person.update_attributes(:url => "https://example.com/a/bit/messed/up")
-      @person.reload.public_url.should == "https://example.com/public/#{person.owner.username}/"
+      @person.reload.public_url.should == "https://example.com/public/#{@user.username}/"
     end
     
     it 'should allow ports in the url' do
