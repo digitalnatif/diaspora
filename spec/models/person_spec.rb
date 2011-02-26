@@ -30,11 +30,6 @@ describe Person do
       person.receive_url.should == "https://example.com/receive/users/#{person.guid}/"
     end
     
-    it 'should always return the correct public url' do
-      @person.update_attributes(:url => "https://example.com/a/bit/messed/up")
-      @person.reload.public_url.should == "https://example.com/public/#{@user.username}/"
-    end
-    
     it 'should allow ports in the url' do
       person = Factory.create(:person, :url => "https://example.com:3000/")
       person.url.should == "https://example.com:3000/"
