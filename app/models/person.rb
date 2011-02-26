@@ -96,7 +96,7 @@ class Person < ActiveRecord::Base
   end
   
   def url
-    uri = URI.parse(self.url)
+    uri = URI.parse(@attributes['url'])
     url = "#{uri.scheme}://#{uri.host}"
     url += ":#{uri.port}" unless ["80", "443"].include?(location.port.to_s)
     url += "/"
